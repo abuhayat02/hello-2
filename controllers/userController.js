@@ -19,7 +19,7 @@ let userRegister = async (req, res) => {
       email,
       phone,
       password: encriptade,
-      role : "admin",
+      role,
       picture,
       bio,
     });
