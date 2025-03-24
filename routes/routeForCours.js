@@ -4,7 +4,7 @@ import verifyToken from './../middlewares/verifytoken.js';
 import verifyAdmin from './../middlewares/verifyAdmin.js';
 let router = express.Router();
 
-router.post('/add-course', verifyToken, verifyAdmin, addCourse);
-router.get('/all-course', verifyToken, verifyAdmin, getAllPost);
+router.post('/add-course', addCourse);
+router.get('/all-course', getAllPost);
 
 export default router;
