@@ -28,6 +28,8 @@ let userRegister = async (req, res) => {
     const token = getToken(email);
     res.cookie('token', token, {
       httpOnly: true,
+      secure: true,          // Render / Production এ লাগবেই
+      sameSite: 'None'       // Cross-origin হলে এটা লাগবে
     });
 
     res.status(200).send({
@@ -61,6 +63,8 @@ const loginUser = async (req, res) => {
     const token = getToken(email);
     res.cookie('token', token, {
       httpOnly: true,
+      secure: true,          // Render / Production এ লাগবেই
+      sameSite: 'None'       // Cross-origin হলে এটা লাগবে
     });
     console.log('login token ', token);
     res.status(200).send({
@@ -97,6 +101,8 @@ let userRole = async (req, res) => {
     const token = getToken(email);
     res.cookie('token', token, {
       httpOnly: true,
+      secure: true,          // Render / Production এ লাগবেই
+      sameSite: 'None'       // Cross-origin হলে এটা লাগবে
     });
 
     console.log('login token ', token);
