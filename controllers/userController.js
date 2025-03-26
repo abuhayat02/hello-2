@@ -30,8 +30,8 @@ let userRegister = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // প্রোডাকশনে true হবে
-      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
     });
 
     res.status(200).send({
@@ -67,7 +67,7 @@ const loginUser = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
+      sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
     });
     console.log('login token', token); // শুধুমাত্র ডিবাগের জন্য
 
@@ -106,7 +106,7 @@ let userRole = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
+      sameSite: process.env.NODE_ENV === "production" ? 'None' : 'Lax',
     });
 
     console.log('login token ', token);
@@ -128,7 +128,7 @@ let logoutUser = async (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV ? 'none' : 'strict'
+    sameSite: process.env.NODE_ENV ? 'None' : 'Lax'
   });
   res.status(200).send('Logged out successfully');
 };
