@@ -11,13 +11,14 @@ const port = process.env.PORT || 4000;
 
 app.use(
   cors({
-    credentials: true,
     origin: [
       'http://localhost:5173',
       'http://localhost:5174',
       'https://gyanflow-ca428.web.app',
       'https://gyanflow-ca428.firebaseapp.com',
     ],
+    credentials: true,
+
   })
 );
 app.use(express.json());
