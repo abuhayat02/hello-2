@@ -102,12 +102,12 @@ let userRole = async (req, res) => {
       });
     }
 
-    // const token = getToken(email);
-    // res.cookie('token', token, {
-    //   httpOnly: true,
-    //   secure: process.env.NODE_ENV === 'production',
-    //   sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
-    // });
+    const token = getToken(email);
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
+    });
 
     console.log('login token ', token);
     res.status(200).send({
