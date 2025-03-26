@@ -30,7 +30,7 @@ let userRegister = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // প্রোডাকশনে true হবে
+      secure: true, // প্রোডাকশনে true হবে
       sameSite: 'None',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -67,7 +67,7 @@ const loginUser = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'None',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -107,7 +107,7 @@ let userRole = async (req, res) => {
     const token = getToken(email);
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: true,
       sameSite: 'None',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 দিন
     });
@@ -130,7 +130,7 @@ let userRole = async (req, res) => {
 let logoutUser = async (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: true,
     sameSite: 'None'
   });
   res.status(200).send('Logged out successfully');
