@@ -4,16 +4,14 @@ import getToken from '../utils/tokenGenaratuon.js';
 import dotenv from 'dotenv';
 
 dotenv.config()
-
 let userRegister = async (req, res) => {
   try {
-    console.log(req.body);
     let { name, email, phone, password, role, picture, bio } = req.body;
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).send({
         success: false,
-        message: 'user already exists',
+        message: 'User already exists',
       });
     }
     let encriptade = await bcrypt.hash(password, 10);
@@ -29,12 +27,12 @@ let userRegister = async (req, res) => {
     await myUser.save();
 
     const token = getToken(email);
+
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'production', // প্রোডাকশনে true হবে
       sameSite: 'None',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 দিন
-
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).send({
@@ -48,7 +46,7 @@ let userRegister = async (req, res) => {
       },
     });
   } catch (e) {
-    res.status(200).send({
+    res.status(500).send({ // ৫০০ সার্ভার এরর
       success: false,
       message: e.message,
     });
@@ -62,17 +60,19 @@ const loginUser = async (req, res) => {
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(404).send({
         success: false,
-        message: 'incorrect information',
+        message: 'Incorrect information',
       });
     }
     const token = getToken(email);
+
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'None',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 দিন
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
-    console.log('login token ', token);
+    console.log('login token', token); // শুধুমাত্র ডিবাগের জন্য
+
     res.status(200).send({
       tokenCapture: true,
       success: true,
@@ -84,9 +84,9 @@ const loginUser = async (req, res) => {
       },
     });
   } catch (e) {
-    res.status(404).send({
+    res.status(500).send({ // ৫০০ সার্ভার এরর
       success: false,
-      message: "user can't login",
+      message: "User can't login",
     });
   }
 };
