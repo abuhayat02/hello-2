@@ -1,6 +1,9 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import getToken from '../utils/tokenGenaratuon.js';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 let userRegister = async (req, res) => {
   try {
