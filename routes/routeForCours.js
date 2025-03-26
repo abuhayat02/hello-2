@@ -6,5 +6,6 @@ let router = express.Router();
 
 router.post('/add-course',verifyToken , verifyAdmin , addCourse);
 router.get('/all-course', verifyToken , verifyAdmin, getAllPost);
-
+// lorem
+// fsdhflksd
 export default router;
