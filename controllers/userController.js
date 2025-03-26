@@ -31,8 +31,7 @@ let userRegister = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // প্রোডাকশনে true হবে
-      sameSite: process.env.NODE_ENV ? 'none' : 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
     });
 
     res.status(200).send({
@@ -68,8 +67,7 @@ const loginUser = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV ? 'none' : 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
     });
     console.log('login token', token); // শুধুমাত্র ডিবাগের জন্য
 
@@ -108,8 +106,7 @@ let userRole = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV ? 'none' : 'strict',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 দিন
+      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
     });
 
     console.log('login token ', token);
