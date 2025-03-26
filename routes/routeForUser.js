@@ -12,6 +12,7 @@ import setTooken from './../utils/setToken.js';
 import verifyToken from './../middlewares/verifytoken.js';
 import verifyAdmin from '../middlewares/verifyAdmin.js';
 
+
 const router = express.Router();
 
 router.post('/regiser', userRegister);

@@ -27,8 +27,8 @@ let userRegister = async (req, res) => {
 
     const token = getToken(email);
     res.cookie('token', token, {
-      httpOnly : true,
-      secure: true,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'None'
     });
 
@@ -62,8 +62,8 @@ const loginUser = async (req, res) => {
     }
     const token = getToken(email);
     res.cookie('token', token, {
-      httpOnly : true,
-      secure: true,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'None'
     });
     console.log('login token ', token);
@@ -100,8 +100,8 @@ let userRole = async (req, res) => {
 
     const token = getToken(email);
     res.cookie('token', token, {
-      httpOnly : true,
-      secure: true,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'None'
     });
 
