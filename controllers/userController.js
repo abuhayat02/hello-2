@@ -29,7 +29,9 @@ let userRegister = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None'
+      sameSite: 'None',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 দিন
+
     });
 
     res.status(200).send({
@@ -64,7 +66,8 @@ const loginUser = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None'
+      sameSite: 'None',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 দিন
     });
     console.log('login token ', token);
     res.status(200).send({
@@ -102,7 +105,8 @@ let userRole = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'None'
+      sameSite: 'None',
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 দিন
     });
 
     console.log('login token ', token);
@@ -123,7 +127,7 @@ let userRole = async (req, res) => {
 let logoutUser = async (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'None'
   });
   res.status(200).send('Logged out successfully');
