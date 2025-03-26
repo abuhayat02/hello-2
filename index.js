@@ -17,6 +17,7 @@ app.use(
       'https://gyanflow-ca428.web.app',
       'https://gyanflow-ca428.firebaseapp.com',
     ],
+    methods: ["POST", "GET", "DELETE"],
     credentials: true,
 
   })
