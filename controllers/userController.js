@@ -32,6 +32,7 @@ let userRegister = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      domain: ".gyanflow-ca428.web.app"
     });
 
     res.status(200).send({
@@ -68,6 +69,7 @@ const loginUser = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      domain: ".gyanflow-ca428.web.app"
     });
     console.log('login token', token);
 
@@ -107,6 +109,7 @@ let userRole = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
+      domain: ".gyanflow-ca428.web.app"
     });
 
     console.log('login token ', token);
@@ -128,7 +131,8 @@ let logoutUser = async (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
     secure: true,
-    sameSite: 'none'
+    sameSite: 'none',
+    domain: ".gyanflow-ca428.web.app"
   });
   res.status(200).send('Logged out successfully');
 };
