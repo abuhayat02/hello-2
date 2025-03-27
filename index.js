@@ -6,8 +6,11 @@ import userRouter from './routes/routeForUser.js';
 import courseRouter from './routes/routeForCours.js';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import Memorystore from 'memorystore';
 
 const app = express();
+
+const MemoryStore = Memorystore(session);
 
 const port = process.env.PORT || 4000;
 
@@ -34,6 +37,9 @@ app.use(session({
     secure: true,  // HTTPS ব্যবহার করলে true রাখুন
     sameSite: 'none',  // Cross-Origin কুকিজের জন্য
   },
+  store: new MemoryStore({
+    checkPeriod: 86400000, // 24 ঘণ্টা পর পর পুরোনো সেশন মুছে ফেলবে
+  }),
 }));
 
 connectMongoDB();
