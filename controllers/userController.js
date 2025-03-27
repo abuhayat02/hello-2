@@ -30,8 +30,8 @@ let userRegister = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
+      secure: true,
+      sameSite: "none",
     });
 
     res.status(200).send({
@@ -45,7 +45,7 @@ let userRegister = async (req, res) => {
       },
     });
   } catch (e) {
-    res.status(500).send({ 
+    res.status(500).send({
       success: false,
       message: e.message,
     });
@@ -66,10 +66,10 @@ const loginUser = async (req, res) => {
 
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
+      secure: true,
+      sameSite: "none",
     });
-    console.log('login token', token); 
+    console.log('login token', token);
 
     res.status(200).send({
       tokenCapture: true,
@@ -82,7 +82,7 @@ const loginUser = async (req, res) => {
       },
     });
   } catch (e) {
-    res.status(500).send({ 
+    res.status(500).send({
       success: false,
       message: "User can't login",
     });
@@ -105,8 +105,8 @@ let userRole = async (req, res) => {
     const token = getToken(email);
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === "production" ? 'none' : 'strict',
+      secure: true,
+      sameSite: "none",
     });
 
     console.log('login token ', token);
@@ -127,8 +127,8 @@ let userRole = async (req, res) => {
 let logoutUser = async (req, res) => {
   res.clearCookie('token', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV ? 'none' : 'strict'
+    secure: true,
+    sameSite: 'none'
   });
   res.status(200).send('Logged out successfully');
 };
