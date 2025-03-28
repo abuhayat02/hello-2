@@ -28,17 +28,18 @@ let userRegister = async (req, res) => {
 
     const token = getToken(email);
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      domain: ".gyanflow-ca428.web.app"
-    });
+    // res.cookie('token', token, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: "none",
+    //   domain: ".gyanflow-ca428.web.app"
+    // });
 
     res.status(200).send({
       tokenCapture: true,
       success: true,
       data: {
+        token,
         name,
         email,
         phone,
@@ -65,18 +66,19 @@ const loginUser = async (req, res) => {
     }
     const token = getToken(email);
 
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      domain: ".gyanflow-ca428.web.app"
-    });
+    // res.cookie('token', token, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: "none",
+    //   domain: ".gyanflow-ca428.web.app"
+    // });
     console.log('login token', token);
 
     res.status(200).send({
       tokenCapture: true,
       success: true,
       data: {
+        token ,
         name: user.name,
         email: user.email,
         phone: user.phone,
@@ -105,17 +107,18 @@ let userRole = async (req, res) => {
     }
 
     const token = getToken(email);
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      domain: ".gyanflow-ca428.web.app"
-    });
+    // res.cookie('token', token, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: "none",
+    //   domain: ".gyanflow-ca428.web.app"
+    // });
 
     console.log('login token ', token);
     res.status(200).send({
       tokenCapture: true,
       success: true,
+      token ,
       data: user,
     });
   } catch (e) {
